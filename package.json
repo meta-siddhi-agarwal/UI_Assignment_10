@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "new": "^0.1.1",
+    "typescript":"^5.8.3"
+  },
+  "name": "newpac",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript":"^5.8.3"
+  },
+  "scripts": {
+    "build":"tsc",
+    "start": "tsc --watch"
+  },
+  "author": "siddhi",
+  "license": "ISC",
+  "description": ""
+}
