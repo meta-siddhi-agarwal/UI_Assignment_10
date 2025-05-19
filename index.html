@@ -1,206 +1,226 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metacube Parking System</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <div class="navbar" style="display: flex;">
-        <div class="logo">
-            <img src="images/metacube.png" alt="Metacube Logo" class="metaLogo" >
-        </div>
-        <nav class="topnav">
-            <a href="#add-employee" onclick="showForm('emp-details','emp-name')">Add Employee</a>
-            <!-- <a href="#add-vehicle">Add Vehicle</a>
-            <a href="#give-feedback">Give Feedback</a>
-            <a href="#pricing">Pricing</a> -->
+
+    <!--Navigation Bar-->
+    <div id="header">
+        <nav id="navbar">
+            <img src="images/logo.png" alt="Logo of parking system" width="200px">
+            <ul>
+                <li><a href="#add_employee">Add Employee</a></li>
+                <!-- <li><a href="#add_vehicle">Add Vehicle</a></li> -->
+                <!-- <li><a href="#give_feedback">Give Feedback</a></li> -->
+                <!-- <li><a href="#pricing">Pricing</a></li> -->
+            </ul>
         </nav>
     </div>
-    <div class="cover">
-        <img src="images/parking.jpg">
-    </div>
-
-    <details id="emp-details" open=false>
-        <summary> Add Employee Form</summary>
-        <section id="add-employee">
-            <div class="employee-image">
-                <img src="images/employee.jpg" alt="Employee Image" width="500px" height="400px">
-            </div>
-            <div id="employee-form">
-                <h2> Employee Details </h2>
+    <!--Cover image-->
+    <!--Add Employee Section-->
+    <details id="regSection">
+        <summary>Employee Details Form</summary>
+        <section id="add_employee">
+            <div id="employee_form">
+                <h2>Employee Details Form</h2>
+                <!--Add Employee Form-->
                 <form>
-                    <div id="emp-name">
-                        <label for="name" class="name"> Name: </label>
-                        <input type="text" id="name" name ="name" placeholder="Enter your full name.."
-                        title="Name should contain only alphabets and spaces"
-                        onchange="employee.validateName()" 
-                        required> <br> <br>
+                    <div class="nam">
+                        <label for="name" class="name" id="userName">Enter full Name : </label><br>
+                        <input type="text" id="name" name="name" title="Name should contain only alphabets and spaces"
+                            required class="name"  oninput="validateUserName()"><br><br>
                     </div>
-                    <div id="emp-gender">
-                        <label for="gender" id="gender-input">Gender: </label><br>
-                        <input type="radio" id="male" name="gender" value="Male" onclick="proceedNext('emp-gender','emp-email')">
-                        <label for="male" class="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="Female" onclick="proceedNext('emp-gender','emp-email')">
-                        <label for="female" class="female">Female</label>
-                        <input type="radio" id="other" name="gender" value="Other" onclick="proceedNext('emp-gender','emp-email')">
-                        <label for="other" class="other">Other</label> <br> <br>
+
+                    <div class="genderDiv">
+                        <label class="gender" id="userGender">Gender : </label><br>
+                        <input type="radio" id="male" name="gender" value="Male" required class="gender"
+                            onclick="showEmail()">
+
+                        <label for="male" class="gender">Male</label>
+                        <input type="radio" id="female" name="gender" value="Female" class="gender"
+                            onclick="showEmail()">
+                        <label for="female" class="gender">Female</label>
+                        <input type="radio" id="other" name="gender" value="Other" class="gender" onclick="showEmail()">
+                        <label for="other" class="gender">Other</label><br><br>
+
                     </div>
-                    <div id="emp-email">
-                        <label for="email" class="email">Email: </label>
-                        <input type="email" id="email" name="email" placeholder="xyz@gmail.com" onchange="employee.validateEmail()" required> <br> <br>
+
+                    <div class="emailDiv">
+                        <label for="email" class="email" id="emailId">Email : </label><br>
+                        <input type="email" id="email" name="email" required class="email "><br><br>
                     </div>
-                    <div id="emp-password">
-                        <label for="password" class="password">Password: </label>
-                        <input type="password" id="password" placeholder="Enter your password" onchange="employee.validatePassword()" required> <br> <br>
+
+
+                    <div class="passDiv">
+                        <label for="password" class="password" id="pass">Password : </label><br>
+                        <div style="display: flex;" class="dispPass">
+
+                            <input type="password" id="password" name="password" required class="password" title="">
+                            <!-- oninput="showBorder()"  -->
+
+                            <img src="images/eye-password-hide-svgrepo-com.svg" alt="" width="20px" height="50px"
+                                id="eyeButton" onclick="showPass()">
+                        </div>
                     </div>
-                    <div id="emp-pass">
-                        <label for="confirm-password" class="confirm-password">Confirm Password: </label>
-                        <input type="password" id="confirm-password" placeholder="Enter your password again" onchange="employee.confirmPassword()" required> <br> <br>
+
+
+                    <div class="confirmPassDiv">
+                        <label for="confirm_password" class="confirmPassword">Confirm Password : </label><br>
+                        <input type="password" id="confirm_password" name="confirm_password" required
+                            class="confirmPassword"><br><br>
                     </div>
-                    <div id="emp-contact">
-                        <label for="contact-number" class="contact">Contact Number: </label>
-                        <input type="tel" id="contact-number" placeholder="Enter phone number" onchange="employee.validatePhone()" required>
+
+                    <div class="userContact">
+                        <label for="contact_no" class="contact" id="contact_No">Contact Number : </label><br>
+                        <input type="number" id="contact_no" name="contact_no" title="Enter your contact no." required
+                            class="contact" oninput="showSubmitButton()"><br><br>
                     </div>
-                    <div id="emp-submit">
-                        <input type="button" value="Add Employee" onclick="employee.submitForm()">
-                    </div>
+
+
+                    <input type="submit" value="Add Employee" onmousedown="closeForm()" id="submitEmpForm"
+                        style="cursor: not-allowed; opacity: 0.2;">
                 </form>
+            </div>
+            <div id="employee_photo">
+                <img src="images/employees.jpg" alt="Employee Form image">
             </div>
         </section>
     </details>
 
-    <details id="vehicle-details" open=false>
-        <summary> Add Vehicle Form </summary>
-        <section id="add-vehicle">
-            <div id="vehicle-form">
-                <h2> Vehicle Details </h2>
-                <form>
-                    <div id="vehicle-input1">
-                        <label for="vehicle-make">Vehicle Make (Company): </label>
-                        <input type="text" id="vehicle-make" name="vehicle-make" placeholder="Enter the Vehicle Company." 
-                        onchange="proceedNext('vehicle-input1','vehicle-input2')"
-                        required> <br> <br>
-                    </div>
-                    <div id="vehicle-input2">
-                        <label for="vehicle-model">Vehicle Model: </label>
-                        <input type="text" id="vehicle-model" placeholder="Enter vehicle model." 
-                        onchange="proceedNext('vehicle-input2','vehicle-input3')"
-                        required> <br> <br>
-                    </div>
-                    <div id="vehicle-input3">
-                        <label for="vehicle-type">Vehicle Type: </label>
-                        <select name="type" id="vehicle-type" 
-                        onchange="proceedNext('vehicle-input3','vehicle-input4')" required>
-                            <option value="" disabled selected> Select Vehicle Type</option>
-                            <option value="cycle">Cycle</option>
-                            <option value="motorcycle">Motorcycle</option>
-                            <option value="fourwheeler">Four Wheeler</option>
-                        </select> <br> <br>
-                    </div>
-                    <div id="vehicle-input4">
-                        <label for="vehicle-number">Vehicle Number: </label>
-                        <input type="text" id="number" placeholder="Enter vehicle number"
-                        onchange="vehicle.validateNumber()"
-                        required> <br> <br>
-                    </div>
-                    <div id="vehicle-input5">
-                        <label for="employee-id">Employee ID: </label>
-                        <input type="number" id="employee-id" placeholder="Enter your employee id" 
-                        onchange="vehicle.validateId()"
-                        required> <br> <br>
-                    </div>
-                    <div id="vehicle-input6">
-                        <label for="identification"> Identification (Color, Mark, Visible Accessory etc..)</label>
-                        <textarea id="identification" 
-                        placeholder="Enter the identification such as color, mark, any visible accessories etc.." 
-                        rows="4" cols="47" onchange="proceedNext('vehicle-input6','vehicle-submit')"></textarea> 
-                        <br> <br>
-                    </div>
-                    <div id="vehicle-submit">
-                        <input type="button" value="Add vehicle" onclick="vehicle.submitVehicleForm()">
-                    </div>
-                </form>
-            </div>
-            <div id="vehicle-image">
-                <img src="images/vehicle.jpg" alt="Vehicle Image" width="500px" height="400px">
-            </div>
-        </section>
-    </details>
+    <!--Add Vehicle Section-->
 
-    <section id="pricing" style="display: none;">
-        <h2>Pricing Section</h2>
-        <div id="pricing-sections">
-            <section id="cycle">
-                <h3>CYCLE</h3>
-                <div id="cycle-purchase-plan">
-                    <b>Rs. 100</b>
-                    <br> /month
+
+    <section id="add_vehicle">
+        <div id="vehicle_photo">
+            <img src="images/vehicle.jpg" alt="Vehicle Form image" width="600px" height="300px">
+        </div>
+        <div id="vehicle_form">
+            <h2>Vehicle Details Form</h2>
+            <!--Add Vehicle Form-->
+            <form>
+                <div class="compName">
+                    <label for="company " class="companyName">Enter company name: </label><br>
+                    <input type="text" id="company" name="company"
+                        title="Company name cannot contain symbols and numbers and should start with uppercase" value=""
+                        class="companyName" required><br><br>
                 </div>
-                <select name="plan" id="cycle-plan" onchange="pass.displayPlan('cycle')">
-                    <option disabled selected>Select Plan</option>
-                    <option value="daily">Daily</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                </select>
-                <select name="currency" id="cycle-currency" onchange="pass.displayPlan('cycle')">
-                    <option value="USD">USD</option>
-                    <option value="YEN">YEN</option>
-                </select>
-                <button onclick="pass.getPass('cycle-purchase-plan')">Get Pass</button>
-            </section>
-    
-            <section id="motorcycle">
-                <h3>MOTORCYCLE</h3>
-                <div id="motorcycle-purchase-plan">
-                    <b>Rs. 200</b>
-                    <br> /month
+
+                <div class="modelName">
+                    <label for="model">Enter Model name : </label><br>
+                    <input type="text" id="model" name="model" required><br><br>
                 </div>
-                <select name="plan" id="motorcycle-plan" onchange="pass.displayPlan('motorcycle')">
-                    <option disabled selected>Select Plan</option>
-                    <option value="daily">Daily</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                </select>
-                <select name="currency" id="motorcycle-currency" onchange="pass.displayPlan('motorcycle')">
-                    <option value="USD">USD</option>
-                    <option value="YEN">YEN</option>
-                </select>
-                <button onclick="pass.getPass('motorcycle-purchase-plan')">Get Pass</button>
-            </section>
-    
-            <section id="fourwheeler">
-                <h3>FOUR WHEELERS</h3>
-                <div id="fourwheeler-purchase-plan">
-                    <b>Rs. 500</b>
-                    <br> /month
+
+                <div class="vechType">
+                    <label for="type" class="vehicleType">Which vehicle do you have : </label><br>
+                    <select name="type" id="typeOfVeh" required onchange="showVehicleNumber()">
+                        <option value="Select type">Select</option>
+                        <option value="Cycle">Cycle</option>
+                        <option value="Motorcycle">MotorCycle</option>
+                        <option value="Four Wheeler">Four Wheeler</option>
+                    </select><br><br>
                 </div>
-                <select name="plan" id="fourwheeler-plan" onchange="pass.displayPlan('fourwheeler')">
-                    <option disabled selected>Select Plan</option>
-                    <option value="daily">Daily</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                </select>
-                <select name="currency" id="fourwheeler-currency" onchange="pass.displayPlan('fourwheeler')">
-                    <option value="USD">USD</option>
-                    <option value="YEN">YEN</option>
-                </select>
-                <button onclick="pass.getPass('fourwheeler-purchase-plan')">Get Pass</button>
-            </section>
+
+                <div class="vechNo">
+                    <label for="VehicleNo" class="vehicleNumber">Enter vehicle number : </label><br>
+                    <input type="text" id="VehicleNo" name="VehicleNo" pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
+                        title="Invalid vehicle number" class="vehicleNumber" required><br><br>
+
+                </div>
+
+                <div class="employeeId">
+                    <label for="empId" class="empId">Enter employee id: </label><br>
+                    <input type="number" id="empId" name="empId" class="empId" required><br><br>
+
+                </div>
+
+                <div class="identity">
+                    <label for="identification" class="identification">Enter vehicle Identifications : </label><br>
+                    <textarea name="identification" id="identification" class="identification"
+                        placeholder="vehicle-color, mark, visible accessories etc" required
+                        oninput="showButton()"></textarea><br><br>
+
+                </div>
+
+                <input type="submit" value="Add Vehicle" onmousedown="closeVehForm()" id="vehCloseButton"
+                    style="cursor: not-allowed; opacity: 0.2;">
+
+            </form>
         </div>
     </section>
 
+
+    <details class="feedbackSec">
+        <summary>Feedback Form</summary>
+        <section id="give_feedback">
+            <div id="feedback_form">
+                <h2>Feedback Form</h2>
+                <!--Feedback form-->
+                <form>
+                    <label for="emp_id">Employee ID : </label><br>
+                    <input type="number" id="emp_id" name="emp_id" required><br><br>
+
+                    <label for="email">Email : </label><br>
+                    <input type="email" name="email" required><br><br>
+
+                    <label for="feedback">Feedback : </label><br>
+                    <textarea name="feedback" id="feedback" placeholder="How was your experience?"
+                        required></textarea><br><br>
+
+                    <label for="suggestion">Suggestions : </label><br>
+                    <textarea name="suggestion" id="suggestion"
+                        placeholder="Any suggestions for improvement"></textarea><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div id="feedback_photo">
+                <img src="images/feedback.jpg" alt="Feedback Form image" width="500px" height="300px">
+            </div>
+        </section>
+    </details>
+
+    <!--Pricing section-->
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <div id="pricing_sections">
+             <section id="motorcycle">
+                <h3 id="priceOfSelectedType">MotorCycle</h3>
+                <div class="purchase_plan">
+                    <b id="pricePerMonth">Rs.200</b>
+                    /month
+                </div>
+                <select id="motorCyclePricing">
+                    <option value="10" id="daily">Rs.10 Daily</option>
+                    <option value="200" id="monthly">Rs.200 Monthly</option>
+                    <option value="1000"id="yearly">Rs.1000 Yearly</option>
+                </select><br>
+                <button onmousedown="showPrice('motorCyclePricing', 'displayPass')">Get Pass</button>
+
+                <select id="fromOfMotorCycle">
+                    <option value="USD">Change to USD</option>
+                    <option value="YEN">Change to YEN</option>
+                </select>
+                <button type="button" id="convert"
+                    onmousedown="conversion('motorCyclePricing','displayPass','fromOfMotorCycle')">Convert</button>
+                <p id="result"></p>
+                <label for="priceDisp" id="displayPass" style="display: none;"></label>
+            </section>
+           
+        </div>
+    </section>
     <footer>
+        <p><strong>Metacube Parking System</strong></p>
+        <p>© 2025 Metacube Technologies. All Rights Reserved.</p>
         <p>
-            <strong>Metacube Parking System</strong>
-        </p>
-        <p>
-            Metacube Technologies. All Rights Reserved.
+            <a href="mailto:info@metacubeparking.com">Contact Us</a> |
+            +91 9123456780
         </p>
     </footer>
-
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
+
 </html>
