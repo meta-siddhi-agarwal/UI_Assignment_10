@@ -1,6 +1,10 @@
 "use strict";
+//Employee class for taking emp. details
 class Employee {
     constructor(nameRegex, emailRegex, passRegex, contactRegex) {
+        /**
+         * will close emp. form
+         */
         this.closeForm = () => {
             let userContact = document.querySelector('#contact_no');
             let contactValue = userContact.value;
@@ -20,6 +24,9 @@ class Employee {
                 addVechDiv === null || addVechDiv === void 0 ? void 0 : addVechDiv.setAttribute("style", "display:flex");
             }
         };
+        /**
+         * validating user name and displaying gender block
+         */
         this.setEvent = () => {
             let textField = document.querySelector('#name');
             let userName = textField === null || textField === void 0 ? void 0 : textField.value;
@@ -57,6 +64,28 @@ class Employee {
                 }
             });
         };
+        /**
+         * function for validating user name is correct or not
+         */
+        this.validateUserName = () => {
+            let regex = /^[A-Za-z]+[\s][A-Za-z]+$/;
+            let textField = document.querySelector('#name');
+            let userName = textField === null || textField === void 0 ? void 0 : textField.value;
+            if (userName != null && userName != undefined && userName.length < 2 && userName.length < 2) {
+                textField === null || textField === void 0 ? void 0 : textField.setAttribute('title', "Length  be min. 2");
+            }
+            else if (userName != null && userName != undefined && !regex.test(userName)) {
+                textField === null || textField === void 0 ? void 0 : textField.setAttribute('title', "Please enter valid name");
+            }
+            else if (userName != null && userName != undefined && regex.test(userName)) {
+                textField === null || textField === void 0 ? void 0 : textField.setAttribute('title', "Name is valid");
+            }
+            else {
+            }
+        };
+        /**
+         *validating user email and displaying password block
+         */
         this.setEmailEvent = () => {
             let userEmail = document.querySelector('#email');
             userEmail === null || userEmail === void 0 ? void 0 : userEmail.addEventListener('keydown', (event) => {
@@ -73,8 +102,6 @@ class Employee {
                         if (passLabel != null && passLabel != undefined) {
                             passLabel.innerHTML = `Hi ${userName},Can I know your password`;
                         }
-                        let eyeDiv = document.querySelector("#eyeButton");
-                        eyeDiv === null || eyeDiv === void 0 ? void 0 : eyeDiv.setAttribute("style", "visibility:visible");
                     }
                     else {
                         userEmail.setAttribute('title', "Please enter valid email");
@@ -82,6 +109,24 @@ class Employee {
                 }
             });
         };
+        /**
+         * show email field to user
+         */
+        this.showEmail = () => {
+            let genderDiv = document.querySelector(".genderDiv");
+            genderDiv === null || genderDiv === void 0 ? void 0 : genderDiv.setAttribute("style", "display:none");
+            let emailDiv = document.querySelector(".emailDiv");
+            emailDiv === null || emailDiv === void 0 ? void 0 : emailDiv.setAttribute("style", "display:block");
+            let emailLabel = document.querySelector("#emailId");
+            let textField = document.querySelector('#name');
+            let userName = textField === null || textField === void 0 ? void 0 : textField.value;
+            if (emailLabel != null && emailLabel != undefined) {
+                emailLabel.innerHTML = `Hi ${userName},Can I know your email`;
+            }
+        };
+        /**
+         * validating user password and displaying confirm password block
+         */
         this.setPassEvent = () => {
             let userPassword = document.querySelector('#password');
             userPassword === null || userPassword === void 0 ? void 0 : userPassword.addEventListener('keydown', (event) => {
@@ -108,6 +153,9 @@ class Employee {
                 }
             });
         };
+        /**
+         * validating confirm password and displaying contact block
+         */
         this.setConfirmPassEvent = () => {
             let confirmedPassword = document.querySelector('#confirm_password');
             let password = document.querySelector('#password');
@@ -134,6 +182,9 @@ class Employee {
                 }
             });
         };
+        /**
+         * validating user contact no. and diaplying vech. form
+         */
         this.setContactEvent = () => {
             let userContact = document.querySelector('#contact_no');
             userContact === null || userContact === void 0 ? void 0 : userContact.addEventListener('keydown', (event) => {
@@ -160,6 +211,9 @@ class Employee {
                 }
             });
         };
+        /**
+         * will show emp. submit button to user
+         */
         this.showSubmitButton = () => {
             let contact = document.querySelector('#contact_no');
             let contactValue = contact.value;
@@ -179,8 +233,12 @@ class Employee {
         this.contactRegex = contactRegex;
     }
 }
+//Vehicle class for taking veh. details
 class Vehicle {
     constructor(vehicleRegex) {
+        /**
+         * validate company name and display company model
+         */
         this.setCompNameEvent = () => {
             let vehicleName = document.querySelector('#company');
             let vehicleValue;
@@ -208,6 +266,9 @@ class Vehicle {
                 }
             });
         };
+        /**
+         * validate company model and display vech. type
+         */
         this.setCompModelEvent = () => {
             let vehicleModel = document.getElementById('model');
             vehicleModel === null || vehicleModel === void 0 ? void 0 : vehicleModel.addEventListener('keydown', (event) => {
@@ -219,6 +280,18 @@ class Vehicle {
                 }
             });
         };
+        /**
+         * show vech. no. field and disable vech. type field
+         */
+        this.showVehicleNumber = () => {
+            let vechTypeDiv = document.querySelector(".vechType");
+            vechTypeDiv === null || vechTypeDiv === void 0 ? void 0 : vechTypeDiv.setAttribute("style", "display:none");
+            let vechNoDiv = document.querySelector(".vechNo");
+            vechNoDiv === null || vechNoDiv === void 0 ? void 0 : vechNoDiv.setAttribute("style", "display:block");
+        };
+        /**
+        * display emp. id
+        */
         this.setVechNoEvent = () => {
             let vehicleNumberFiels = document.querySelector("#VehicleNo");
             vehicleNumberFiels === null || vehicleNumberFiels === void 0 ? void 0 : vehicleNumberFiels.addEventListener('keydown', (event) => {
@@ -230,6 +303,9 @@ class Vehicle {
                 }
             });
         };
+        /**
+         * display identity field and disable emp. id field
+         */
         this.empIdEvent = () => {
             let empId = document.querySelector("#empId");
             empId === null || empId === void 0 ? void 0 : empId.addEventListener('keydown', (event) => {
@@ -241,6 +317,81 @@ class Vehicle {
                 }
             });
         };
+        /**
+         * show submit button of vech. form
+         */
+        this.showButton = () => {
+            let identification = document.querySelector('#identification');
+            let identityVal = identification.value;
+            let vechCloseDiv = document.querySelector("#vehCloseButton");
+            if (identityVal.length == 0) {
+                vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "cursor:not-allowed");
+                vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "opacity:0.2");
+            }
+            else {
+                vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "cursor:pointer");
+                vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "opacity:1");
+            }
+        };
+        /**
+         * display price form and hide vechicle form
+         */
+        this.closeVehForm = () => {
+            let submirButton = document.querySelector('#vehCloseButton');
+            if (submirButton != null && submirButton != undefined) {
+                if (submirButton.getAttribute("style.opacity") != "0.2") {
+                    let vechDiv = document.querySelector("#add_vehicle");
+                    vechDiv === null || vechDiv === void 0 ? void 0 : vechDiv.setAttribute("style", "display:none");
+                    let priceDiv = document.querySelector("#pricing");
+                    priceDiv === null || priceDiv === void 0 ? void 0 : priceDiv.setAttribute("style", "display:block");
+                    let vechType = document.getElementById('typeOfVeh');
+                    let vechInputDiv = document.querySelector('#priceOfSelectedType');
+                    if (vechInputDiv != null && vechInputDiv != undefined) {
+                        vechInputDiv.innerHTML = vechType === null || vechType === void 0 ? void 0 : vechType.value;
+                    }
+                    const cycle = {
+                        daily: "5",
+                        monthly: "100",
+                        yearly: "500"
+                    };
+                    const motorcycle = {
+                        daily: "10",
+                        monthly: "200",
+                        yearly: "1000"
+                    };
+                    const fourWheeler = {
+                        daily: "20",
+                        monthly: "500",
+                        yearly: "3500"
+                    };
+                    const vehicles = new Array(cycle, motorcycle, fourWheeler);
+                    for (let index of vehicles) {
+                        let dailyPrice = document.querySelector('#daily');
+                        if (dailyPrice != null && dailyPrice != undefined) {
+                            dailyPrice.innerHTML = `Rs. ${index.daily} Daily`;
+                            dailyPrice.setAttribute("value", `${index.daily}`);
+                        }
+                        let monthlyPrice = document.querySelector('#monthly');
+                        if (monthlyPrice != null && monthlyPrice != undefined) {
+                            monthlyPrice.innerHTML = `Rs. ${index.monthly} Monthly`;
+                            monthlyPrice.setAttribute("value", `${index.monthly}`);
+                        }
+                        let yearlyPrice = document.querySelector('#yearly');
+                        if (yearlyPrice != null && yearlyPrice != undefined) {
+                            yearlyPrice.innerHTML = `Rs. ${index.yearly} Yearly`;
+                            yearlyPrice.setAttribute("value", `${index.yearly}`);
+                        }
+                        let pricePerMonth = document.querySelector('#pricePerMonth');
+                        if (pricePerMonth != null && pricePerMonth != undefined) {
+                            pricePerMonth.innerHTML = `Rs. ${index.monthly}`;
+                        }
+                    }
+                }
+            }
+        };
+        /**
+         * display price form and hide vechicle form
+         */
         this.setIdentityEvent = () => {
             let identificationField = document.getElementById('identification');
             const cycle = {
@@ -310,7 +461,15 @@ class Vehicle {
         this.vehicleRegex = vehicleRegex;
     }
 }
+//Pass class for taking displaying price
 class Pass {
+    constructor() {
+    }
+    /**
+     * function for displaying total price for selected plan for chosen vehicle
+     * @param {vehicleType}->type of plan chosen
+     * @param {vehicleInputField}-> label for displaying total price for selected plan
+     */
     showPrice(vehicleType, vehicleInputField) {
         let pricing = document.getElementById(vehicleType);
         let price = pricing === null || pricing === void 0 ? void 0 : pricing.value;
@@ -320,6 +479,12 @@ class Pass {
             vechInputDiv.innerHTML = `Total price is Rs.${price}`;
         }
     }
+    /**
+     * function for converting currency
+     * @param {planType}->type of plan chosen
+     * @param {price}->label for displaying total price for selected plan
+     * @param {vehicleType} ->currrency into which we want to convert
+     */
     conversion(planType, price, vehicleType) {
         let pricing = document.getElementById(planType);
         const result = document.getElementById(price);
@@ -339,8 +504,12 @@ class Pass {
         });
     }
 }
+//vech. obj.
 let vechObj = new Vehicle(/^[A-Z]{1}[A-Za-z\s]+/);
+//emp. object
 let empObj = new Employee(/^[A-Za-z]+[\s][A-Za-z]+$/, /^[A-Za-z0-9\-\_\+\.]+[@][a-zA-Z\-]+[.][a-z]{2,3}$/, /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\!\@\#\$\%\^\&\.\_])/, /^[6-9][0-9]{9}/);
+//pass obj.
+let passObj = new Pass();
 empObj.setEvent();
 empObj.setEmailEvent();
 empObj.setPassEvent();
@@ -351,84 +520,3 @@ vechObj.setCompModelEvent();
 vechObj.setVechNoEvent();
 vechObj.empIdEvent();
 vechObj.setIdentityEvent();
-function validateUserName() {
-    let regex = /^[A-Za-z]+[\s][A-Za-z]+$/;
-    let textField = document.querySelector('#name');
-    let userName = textField === null || textField === void 0 ? void 0 : textField.value;
-    if (userName != null && userName != undefined && userName.length < 2 && userName.length < 2) {
-        textField === null || textField === void 0 ? void 0 : textField.setAttribute('title', "Length  be min. 2");
-    }
-    else if (userName != null && userName != undefined && !regex.test(userName)) {
-        textField === null || textField === void 0 ? void 0 : textField.setAttribute('title', "Please enter valid name");
-    }
-    else if (userName != null && userName != undefined && regex.test(userName)) {
-        textField === null || textField === void 0 ? void 0 : textField.setAttribute('title', "Name is valid");
-    }
-    else {
-    }
-}
-function showEmail() {
-    let genderDiv = document.querySelector(".genderDiv");
-    genderDiv === null || genderDiv === void 0 ? void 0 : genderDiv.setAttribute("style", "display:none");
-    let emailDiv = document.querySelector(".emailDiv");
-    emailDiv === null || emailDiv === void 0 ? void 0 : emailDiv.setAttribute("style", "display:block");
-    let emailLabel = document.querySelector("#emailId");
-    let textField = document.querySelector('#name');
-    let userName = textField === null || textField === void 0 ? void 0 : textField.value;
-    if (emailLabel != null && emailLabel != undefined) {
-        emailLabel.innerHTML = `Hi ${userName},Can I know your email`;
-    }
-}
-function showVehicleNumber() {
-    let vechTypeDiv = document.querySelector(".vechType");
-    vechTypeDiv === null || vechTypeDiv === void 0 ? void 0 : vechTypeDiv.setAttribute("style", "display:none");
-    let vechNoDiv = document.querySelector(".vechNo");
-    vechNoDiv === null || vechNoDiv === void 0 ? void 0 : vechNoDiv.setAttribute("style", "display:block");
-}
-let passObj = new Pass();
-function showPrice(vehicleType, vehicleInputField) {
-    passObj.showPrice(vehicleType, vehicleInputField);
-}
-function showButton() {
-    let identification = document.querySelector('#identification');
-    let identityVal = identification.value;
-    let vechCloseDiv = document.querySelector("#vehCloseButton");
-    if (identityVal.length == 0) {
-        vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "cursor:not-allowed");
-        vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "opacity:0.2");
-    }
-    else {
-        vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "cursor:pointer");
-        vechCloseDiv === null || vechCloseDiv === void 0 ? void 0 : vechCloseDiv.setAttribute("style", "opacity:1");
-    }
-}
-function conversion(planType, price, vehicleType) {
-    passObj.conversion(planType, price, vehicleType);
-}
-function showSubmitButton() {
-    empObj.showSubmitButton();
-}
-function closeForm() {
-    empObj.closeForm();
-}
-function showPass() {
-    let inputType = document.getElementById('password');
-    let typeOfInput = inputType === null || inputType === void 0 ? void 0 : inputType.getAttribute('type');
-    // let typeOfInput=(inputType as HTMLInputElement).type;
-    if (typeOfInput == 'password')
-        typeOfInput = 'text';
-    else {
-        typeOfInput = 'password';
-    }
-    let eyeType = document.getElementById('eyeButton');
-    // userContactDiv?.setAttribute("style", "display:none");
-    let eyeTyepe = eyeType === null || eyeType === void 0 ? void 0 : eyeType.getAttribute('src.value');
-    if (eyeTyepe != null && eyeTyepe != undefined && eyeTyepe === 'images/eye-password-hide-svgrepo-com.svg') {
-        // eyeType.attributes.src.value = 'images/eye-view-interface-symbol-svgrepo-com.svg';
-        eyeType === null || eyeType === void 0 ? void 0 : eyeType.setAttribute("src", "images/eye-view-interface-symbol-svgrepo-com.svg");
-    }
-    else {
-        eyeType === null || eyeType === void 0 ? void 0 : eyeType.setAttribute("src", "images/eye-password-hide-svgrepo-com.svg");
-        // eyeType.src = "images/eye-password-hide-svgrepo-com.svg";
-    }
-}
