@@ -33,19 +33,20 @@
                     <div class="nam">
                         <label for="name" class="name" id="userName">Enter full Name : </label><br>
                         <input type="text" id="name" name="name" title="Name should contain only alphabets and spaces"
-                            required class="name"  oninput="validateUserName()"><br><br>
+                            required class="name" oninput="empObj.validateUserName()"><br><br>
                     </div>
 
                     <div class="genderDiv">
                         <label class="gender" id="userGender">Gender : </label><br>
                         <input type="radio" id="male" name="gender" value="Male" required class="gender"
-                            onclick="showEmail()">
+                            onclick="empObj.showEmail()">
 
                         <label for="male" class="gender">Male</label>
                         <input type="radio" id="female" name="gender" value="Female" class="gender"
-                            onclick="showEmail()">
+                            onclick="empObj.showEmail()">
                         <label for="female" class="gender">Female</label>
-                        <input type="radio" id="other" name="gender" value="Other" class="gender" onclick="showEmail()">
+                        <input type="radio" id="other" name="gender" value="Other" class="gender"
+                            onclick="empObj.showEmail()">
                         <label for="other" class="gender">Other</label><br><br>
 
                     </div>
@@ -62,9 +63,6 @@
 
                             <input type="password" id="password" name="password" required class="password" title="">
                             <!-- oninput="showBorder()"  -->
-
-                            <img src="images/eye-password-hide-svgrepo-com.svg" alt="" width="20px" height="50px"
-                                id="eyeButton" onclick="showPass()">
                         </div>
                     </div>
 
@@ -78,11 +76,11 @@
                     <div class="userContact">
                         <label for="contact_no" class="contact" id="contact_No">Contact Number : </label><br>
                         <input type="number" id="contact_no" name="contact_no" title="Enter your contact no." required
-                            class="contact" oninput="showSubmitButton()"><br><br>
+                            class="contact" oninput="empObj.showSubmitButton()"><br><br>
                     </div>
 
 
-                    <input type="submit" value="Add Employee" onmousedown="closeForm()" id="submitEmpForm"
+                    <input type="submit" value="Add Employee" onmousedown="empObj.closeForm()" id="submitEmpForm"
                         style="cursor: not-allowed; opacity: 0.2;">
                 </form>
             </div>
@@ -117,7 +115,7 @@
 
                 <div class="vechType">
                     <label for="type" class="vehicleType">Which vehicle do you have : </label><br>
-                    <select name="type" id="typeOfVeh" required onchange="showVehicleNumber()">
+                    <select name="type" id="typeOfVeh" required onchange="vechObj.showVehicleNumber()">
                         <option value="Select type">Select</option>
                         <option value="Cycle">Cycle</option>
                         <option value="Motorcycle">MotorCycle</option>
@@ -142,11 +140,11 @@
                     <label for="identification" class="identification">Enter vehicle Identifications : </label><br>
                     <textarea name="identification" id="identification" class="identification"
                         placeholder="vehicle-color, mark, visible accessories etc" required
-                        oninput="showButton()"></textarea><br><br>
+                        oninput="vechObj.showButton()"></textarea><br><br>
 
                 </div>
 
-                <input type="submit" value="Add Vehicle" onmousedown="closeVehForm()" id="vehCloseButton"
+                <input type="submit" value="Add Vehicle" onmousedown="vechObj.closeVehForm()" id="vehCloseButton"
                     style="cursor: not-allowed; opacity: 0.2;">
 
             </form>
@@ -187,7 +185,7 @@
     <section id="pricing">
         <h2>Pricing</h2>
         <div id="pricing_sections">
-             <section id="motorcycle">
+            <section id="motorcycle">
                 <h3 id="priceOfSelectedType">MotorCycle</h3>
                 <div class="purchase_plan">
                     <b id="pricePerMonth">Rs.200</b>
@@ -196,20 +194,20 @@
                 <select id="motorCyclePricing">
                     <option value="10" id="daily">Rs.10 Daily</option>
                     <option value="200" id="monthly">Rs.200 Monthly</option>
-                    <option value="1000"id="yearly">Rs.1000 Yearly</option>
+                    <option value="1000" id="yearly">Rs.1000 Yearly</option>
                 </select><br>
-                <button onmousedown="showPrice('motorCyclePricing', 'displayPass')">Get Pass</button>
+                <button onmousedown="passObj.showPrice('motorCyclePricing', 'displayPass')">Get Pass</button>
 
                 <select id="fromOfMotorCycle">
                     <option value="USD">Change to USD</option>
                     <option value="YEN">Change to YEN</option>
                 </select>
                 <button type="button" id="convert"
-                    onmousedown="conversion('motorCyclePricing','displayPass','fromOfMotorCycle')">Convert</button>
+                    onmousedown="passObj.conversion('motorCyclePricing','displayPass','fromOfMotorCycle')">Convert</button>
                 <p id="result"></p>
                 <label for="priceDisp" id="displayPass" style="display: none;"></label>
             </section>
-           
+
         </div>
     </section>
     <footer>
